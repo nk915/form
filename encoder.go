@@ -71,9 +71,10 @@ func (e *encoder) traverseStruct(v reflect.Value, namespace []byte, idx int) {
 func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx int, isOmitEmpty bool) {
 
 	if idx > -1 && current.Kind() == reflect.Ptr {
-		namespace = append(namespace, '[')
+		//namespace = append(namespace, '[')
+		namespace = append(namespace, '.')
 		namespace = strconv.AppendInt(namespace, int64(idx), 10)
-		namespace = append(namespace, ']')
+		//namespace = append(namespace, ']')
 		idx = -2
 	}
 
@@ -93,9 +94,10 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 			}
 
 			if idx > -1 {
-				namespace = append(namespace, '[')
+				//namespace = append(namespace, '[')
+				namespace = append(namespace, '.')
 				namespace = strconv.AppendInt(namespace, int64(idx), 10)
-				namespace = append(namespace, ']')
+				//namespace = append(namespace, ']')
 			}
 
 			e.setVal(namespace, idx, arr...)
@@ -143,27 +145,30 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 		}
 
 		if idx > -1 {
-			namespace = append(namespace, '[')
+			//namespace = append(namespace, '[')
+			namespace = append(namespace, '.')
 			namespace = strconv.AppendInt(namespace, int64(idx), 10)
-			namespace = append(namespace, ']')
+			//namespace = append(namespace, ']')
 		}
 
-		namespace = append(namespace, '[')
+		//namespace = append(namespace, '[')
+		namespace = append(namespace, '.')
 		l := len(namespace)
 
 		for i := 0; i < v.Len(); i++ {
 			namespace = namespace[:l]
 			namespace = strconv.AppendInt(namespace, int64(i), 10)
-			namespace = append(namespace, ']')
+			//namespace = append(namespace, ']')
 			e.setFieldByType(v.Index(i), namespace, -2, false)
 		}
 
 	case reflect.Map:
 
 		if idx > -1 {
-			namespace = append(namespace, '[')
+			//namespace = append(namespace, '[')
+			namespace = append(namespace, '.')
 			namespace = strconv.AppendInt(namespace, int64(idx), 10)
-			namespace = append(namespace, ']')
+			//namespace = append(namespace, ']')
 		}
 
 		var valid bool
@@ -178,9 +183,10 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 				continue
 			}
 
-			namespace = append(namespace, '[')
+			//namespace = append(namespace, '[')
+			namespace = append(namespace, '.')
 			namespace = append(namespace, s...)
-			namespace = append(namespace, ']')
+			//namespace = append(namespace, ']')
 
 			e.setFieldByType(v.MapIndex(key), namespace, -2, false)
 		}
@@ -191,9 +197,10 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 		if v.Type() == timeType {
 
 			if idx > -1 {
-				namespace = append(namespace, '[')
+				//namespace = append(namespace, '[')
+				namespace = append(namespace, '.')
 				namespace = strconv.AppendInt(namespace, int64(idx), 10)
-				namespace = append(namespace, ']')
+				//namespace = append(namespace, ']')
 			}
 
 			e.setVal(namespace, idx, v.Interface().(time.Time).Format(time.RFC3339))
@@ -206,9 +213,10 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 		}
 
 		if idx > -1 {
-			namespace = append(namespace, '[')
+			//namespace = append(namespace, '[')
+			namespace = append(namespace, '.')
 			namespace = strconv.AppendInt(namespace, int64(idx), 10)
-			namespace = append(namespace, ']')
+			//namespace = append(namespace, ']')
 		}
 
 		e.traverseStruct(v, namespace, -2)
