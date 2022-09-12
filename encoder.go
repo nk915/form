@@ -73,7 +73,7 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 	if idx > -1 && current.Kind() == reflect.Ptr {
 		//namespace = append(namespace, '[')
 		namespace = append(namespace, '.')
-		namespace = strconv.AppendInt(namespace, int64(idx), 10)
+		namespace = strconv.AppendInt(namespace, int64(idx+1), 10)
 		//namespace = append(namespace, ']')
 		idx = -2
 	}
@@ -96,7 +96,7 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 			if idx > -1 {
 				//namespace = append(namespace, '[')
 				namespace = append(namespace, '.')
-				namespace = strconv.AppendInt(namespace, int64(idx), 10)
+				namespace = strconv.AppendInt(namespace, int64(idx+1), 10)
 				//namespace = append(namespace, ']')
 			}
 
@@ -147,7 +147,7 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 		if idx > -1 {
 			//namespace = append(namespace, '[')
 			namespace = append(namespace, '.')
-			namespace = strconv.AppendInt(namespace, int64(idx), 10)
+			namespace = strconv.AppendInt(namespace, int64(idx+1), 10)
 			//namespace = append(namespace, ']')
 		}
 
@@ -157,7 +157,7 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 
 		for i := 0; i < v.Len(); i++ {
 			namespace = namespace[:l]
-			namespace = strconv.AppendInt(namespace, int64(i), 10)
+			namespace = strconv.AppendInt(namespace, int64(i+1), 10)
 			//namespace = append(namespace, ']')
 			e.setFieldByType(v.Index(i), namespace, -2, false)
 		}
@@ -167,7 +167,7 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 		if idx > -1 {
 			//namespace = append(namespace, '[')
 			namespace = append(namespace, '.')
-			namespace = strconv.AppendInt(namespace, int64(idx), 10)
+			namespace = strconv.AppendInt(namespace, int64(idx+1), 10)
 			//namespace = append(namespace, ']')
 		}
 
@@ -199,7 +199,7 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 			if idx > -1 {
 				//namespace = append(namespace, '[')
 				namespace = append(namespace, '.')
-				namespace = strconv.AppendInt(namespace, int64(idx), 10)
+				namespace = strconv.AppendInt(namespace, int64(idx+1), 10)
 				//namespace = append(namespace, ']')
 			}
 
@@ -215,7 +215,7 @@ func (e *encoder) setFieldByType(current reflect.Value, namespace []byte, idx in
 		if idx > -1 {
 			//namespace = append(namespace, '[')
 			namespace = append(namespace, '.')
-			namespace = strconv.AppendInt(namespace, int64(idx), 10)
+			namespace = strconv.AppendInt(namespace, int64(idx+1), 10)
 			//namespace = append(namespace, ']')
 		}
 
