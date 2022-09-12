@@ -1,4 +1,4 @@
-module github.com/go-playground/form/v4
+module github.com/nk915/form
 
 go 1.13
 
